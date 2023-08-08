@@ -21,7 +21,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs(['Prediction A', 'Prediction B', 'Bundled
 with tab1:
   st.write('hello')
 with tab2:
-  def read_csv_from_zipped_github(url):
+     def read_csv_from_zipped_github(url):
     # Send a GET request to the GitHub URL
         response = requests.get(url)
     # Check if the request was successful
