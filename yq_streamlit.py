@@ -92,8 +92,8 @@ with tab2:
      st.table(gbmt)
 
      # Model and Prediction
-     with open('cdc_xgb.pkl', 'rb') as file:
-         cdcxgb = pickle.load(file)
+     # with open('cdc_xgb.pkl', 'rb') as file:
+     #     cdcxgb = pickle.load(file)
      
      clustermode['frequency_cluster'] = freq_val
      clustermode['Customer_age_cluster'] = hist_val
