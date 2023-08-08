@@ -159,10 +159,7 @@ with tab3:
     st.markdown('This web page displays predictions for the total sales of bundled items. Bundles consist of the top-selling  item from main item category paired with the lowest-selling item from another item category. The aim is to compare 2022 bundled item sales with those of 2021 to determine if there is a sales increase due to item bundling.')
     st.markdown("&nbsp;")
     @st.cache_data
-    def load_data():
-    # First load the original airbnb listtings dataset
-        data = pd.read_csv("final_data_noscaler.csv") #use this for the original dataset, before transformations and cleaning
-        return data
+    
 
 
     def read_csv_from_zipped_github(url):
@@ -194,7 +191,7 @@ with tab3:
         df = read_csv_from_zipped_github(github_url)
 
 
-    data = load_data()
+    
     github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/y2022_data_withqty.zip"
     maintable = read_csv_from_zipped_github(github_url)
     github_url_woy2022 = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/woy2022_data.zip"
@@ -205,8 +202,7 @@ with tab3:
     with open('scaler.pkl', 'rb') as file:
         scaler = joblib.load(file)
 
-    df = pd.read_csv('final_data_noscaler.csv')
-    total_sales = df[['TOTAL_SALES_PER_ITEM']]
+    
 
 
     season_mapping = {'WINTER': 0, 'SPRING': 1, 'SUMMER': 2, 'AUTUMN': 3}
