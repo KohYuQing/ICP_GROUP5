@@ -199,8 +199,6 @@ with tab3:
 
     with open('xgbr_gs.pkl', 'rb') as file:
         xgbr_gs = joblib.load(file)
-    with open('scaler.pkl', 'rb') as file:
-        scaler = joblib.load(file)
 
     
 
