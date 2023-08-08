@@ -1,5 +1,7 @@
+# requirements.txt
+snowflake-connector-python
 streamlit
 pandas
 scikit-learn
-snowflake
-xgboost == 1.7.6
+pydeck
+xgboost
