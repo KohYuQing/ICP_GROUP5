@@ -22,10 +22,11 @@ with tab1:
   st.write('hello')
 with tab2:
      st.title('Calculation of Revenue ')
-     st.markdown('________________________________________________')
      st.markdown("This tab predicts whether or not the customers in a selected cluster is likely to churn. It also includes insights on the selected cluster, such as their total revenue by year \
-                 as well as the number of orders made by this cluster for each menu type. At the bottom, there is a revenue calculation to estimate the revenue by this cluster \
+                 as well as the number of orders made by this cluster for each menu type. \nAt the bottom, there is a revenue calculation to estimate the revenue by this cluster \
                  in the following year if they do not churn. This calculation is based on the cluster's revenue generated in the previous years.")
+     st.markdown('________________________________________________')
+
      def read_csv_from_zipped_github(url):
     # Send a GET request to the GitHub URL
         response = requests.get(url)
