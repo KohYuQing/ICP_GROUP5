@@ -21,6 +21,11 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs(['Prediction A', 'Prediction B', 'Bundled
 with tab1:
   st.write('hello')
 with tab2:
+     st.title('Calculation of Revenue ')
+     st.markdown('________________________________________________')
+     st.markdown("This tab predicts whether or not the customers in a selected cluster is likely to churn. It also includes insights on the selected cluster, such as their total revenue by year \
+                 as well as the number of orders made by this cluster for each menu type. At the bottom, there is a revenue calculation to estimate the revenue by this cluster \
+                 in the following year if they do not churn. This calculation is based on the cluster's revenue generated in the previous years.")
      def read_csv_from_zipped_github(url):
     # Send a GET request to the GitHub URL
         response = requests.get(url)
@@ -86,7 +91,6 @@ with tab2:
      filteredod = orderdata[(orderdata['sale_cluster'] == spend_val) & (orderdata['Customer_age_cluster'] == hist_val) & (orderdata['frequency_cluster'] == freq_val )]
      odgb = filteredod.groupby(['YEAR_OF_ORDER'])['ORDER_AMOUNT'].sum()
      #filteredcd = pd.concat([v1filtered, v2filtered])
-     st.write("fv:" + str(freq_val) + "sv:"+str(spend_val) + "hv" + str(hist_val))
      filteredcd = od[(od['sale_cluster'] == spend_val) & (od['frequency_cluster'] == freq_val )]
      clustermode = filteredcd.mode()
      gbmt = filteredod.groupby(['MENU_TYPE'])['MENU_TYPE'].count()
