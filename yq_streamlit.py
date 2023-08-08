@@ -100,19 +100,20 @@ with tab2:
      clustermode['sale_cluster'] = spend_val
 
 
-     predictedchurn=cdcxgb.predict(clustermode[['TOTAL_PRODUCTS_SOLD', 'ORDER_AMOUNT', 'TOTAL_ORDERS',
-       'MIN_DAYS_BETWEEN_ORDERS', 'MAX_DAYS_BETWEEN_ORDERS',
-       'frequency_cluster', 'Customer_age_cluster', 'sale_cluster',
-       'CITY_Boston', 'CITY_Denver', 'CITY_New York City', 'CITY_San Mateo',
-       'CITY_Seattle', 'REGION_California', 'REGION_Colorado',
-       'REGION_Massachusetts', 'REGION_New York', 'REGION_Washington',
-       'MENU_TYPE_BBQ', 'MENU_TYPE_Chinese', 'MENU_TYPE_Crepes',
-       'MENU_TYPE_Ethiopian', 'MENU_TYPE_Grilled Cheese', 'MENU_TYPE_Gyros',
-       'MENU_TYPE_Hot Dogs', 'MENU_TYPE_Ice Cream', 'MENU_TYPE_Indian',
-       'MENU_TYPE_Mac & Cheese', 'MENU_TYPE_Poutine', 'MENU_TYPE_Ramen',
-       'MENU_TYPE_Sandwiches', 'MENU_TYPE_Tacos', 'MENU_TYPE_Vegetarian']])
+     # predictedchurn=cdcxgb.predict(clustermode[['TOTAL_PRODUCTS_SOLD', 'ORDER_AMOUNT', 'TOTAL_ORDERS',
+     #   'MIN_DAYS_BETWEEN_ORDERS', 'MAX_DAYS_BETWEEN_ORDERS',
+     #   'frequency_cluster', 'Customer_age_cluster', 'sale_cluster',
+     #   'CITY_Boston', 'CITY_Denver', 'CITY_New York City', 'CITY_San Mateo',
+     #   'CITY_Seattle', 'REGION_California', 'REGION_Colorado',
+     #   'REGION_Massachusetts', 'REGION_New York', 'REGION_Washington',
+     #   'MENU_TYPE_BBQ', 'MENU_TYPE_Chinese', 'MENU_TYPE_Crepes',
+     #   'MENU_TYPE_Ethiopian', 'MENU_TYPE_Grilled Cheese', 'MENU_TYPE_Gyros',
+     #   'MENU_TYPE_Hot Dogs', 'MENU_TYPE_Ice Cream', 'MENU_TYPE_Indian',
+     #   'MENU_TYPE_Mac & Cheese', 'MENU_TYPE_Poutine', 'MENU_TYPE_Ramen',
+     #   'MENU_TYPE_Sandwiches', 'MENU_TYPE_Tacos', 'MENU_TYPE_Vegetarian']])
+  
      
-
+     predictedchurn = 1
      churntext = ""
      if (predictedchurn == 1):
           churntext = "LESS"
