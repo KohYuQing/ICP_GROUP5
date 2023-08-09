@@ -56,7 +56,7 @@ def tab1_predict(city,sales_level,frequency_level,history_level):
      # #x_test[required.index('frequency_cluster')] = frequency_level
      # x_test[required.index('customer_age_cluster')] = 1
 
-     with open('model.sav','rb') as f:
+     with open('final_model.sav','rb') as f:
           model = pickle.load(f)
 
      print(x_test)
