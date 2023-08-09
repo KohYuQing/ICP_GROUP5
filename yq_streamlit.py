@@ -10,7 +10,7 @@ import requests
 import zipfile
 import io
 import random
-from streamlit-card import card
+from streamlit_card import card
 
 st.set_page_config(page_title='INVEMP Tasty Bytes Group 5', page_icon='🍖🍕🍜')
 
