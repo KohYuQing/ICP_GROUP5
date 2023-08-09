@@ -799,26 +799,25 @@ with tab4:
         # Display average sales
         st.subheader(f"Average sales for each truck: ${average_sales_2021:.2f}")
 
-        # st.header("Breakdown of Cost for Buying a Food Truck")
-        # truck_cost = 50000
-        # operating_costs = 1500
-        # equipment_costs = 10000
-        # liscenses_permit = 28000
-        # other_costs = 2000
-        # output_data['cog'] = output_data['TOTAL_QTY_SOLD'] * output_data['COG_PER_ITEM_USD']
-        # cog = output_data['cog'].sum()
-        # total_cost = truck_cost + operating_costs + equipment_costs + liscenses_permit + other_costs + cog
+        st.header("Breakdown of Cost for Buying a Food Truck 💸🚚")
+        truck_cost = 50000
+        operating_costs = 1500
+        equipment_costs = 10000
+        liscenses_permit = 28000
+        other_costs = 2000
+        output_data['cog'] = output_data['TOTAL_QTY_SOLD'] * output_data['COG_PER_ITEM_USD']
+        cog = output_data['cog'].sum()
+        total_cost = truck_cost + operating_costs + equipment_costs + liscenses_permit + other_costs + cog
 
-        # st.write(f"Food Truck Cost: ${truck_cost}")
-        # st.write(f"Operating Costs: ${operating_costs} per month")
-        # st.write(f"Equipment Costs: ${equipment_costs}")
-        # st.write(f"Equipment Costs: ${equipment_costs}")
-        # st.write(f"Licenses and Permit Costs: ${liscenses_permit}")
-        # st.write(f"Costs of Goods: ${cog}")
-        # st.write(f"Other Costs: ${other_costs}")
+        st.write(f"Food Truck Cost: ${truck_cost}")
+        st.write(f"Operating Costs: ${operating_costs} per month")
+        st.write(f"Equipment Costs: ${equipment_costs}")
+        st.write(f"Equipment Costs: ${equipment_costs}")
+        st.write(f"Licenses and Permit Costs: ${liscenses_permit}")
+        st.write(f"Costs of Goods: ${cog}")
+        st.write(f"Other Costs: ${other_costs}")
     
-        # st.subheader("Total Cost: ${:.2f}".format(total_cost))
-
+        st.subheader("Total Cost: ${:.2f}".format(total_cost))
 with tab5:
   #Tab 5 code here
   st.write('hello')
