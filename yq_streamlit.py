@@ -94,7 +94,6 @@ def get_total_revenue_of_cluster(city, frequency_level, sales_level, history_lev
 
     return df['ORDER_AMOUNT'].sum()
 
-
 with tab1:
 
      st.title('Churn Prediction And Measures')
@@ -165,42 +164,46 @@ with tab1:
           elif history_level=="Long-Standing Customer": args[3] = 2
 
           total_revenue = get_total_revenue_of_cluster(*args)
-          card(title=str(total_revenue), text='Total Sales Revenue Generated')
-          # st.metric("Total Sales Revenue",total_revenue)
-
-          print(get_bar_chart_df(*args), args)
-          st.subheader("Bottom 3 Popular Menu")
-          st.bar_chart(get_bar_chart_df(*args)[0], x='MENU_TYPE', y='QTY')
-          st.subheader("Top 3 Popular Menu")
-          st.bar_chart(get_bar_chart_df(*args)[1], x='MENU_TYPE', y='QTY')
-
-          top_menu, bottom_menu = get_bar_chart_df(*args)
-          full_menu_data = get_bar_chart_df(*args)[0]
-
-    # Extract the top and bottom 3 menu types
-          top_menu_types = top_menu['MENU_TYPE'].tolist()
-          bottom_menu_types = bottom_menu['MENU_TYPE'].tolist()
-
-    # Convert the menu types to formatted strings
-          top_menu_types_str = ", ".join(top_menu_types)
-          bottom_menu_types_str = ", ".join(bottom_menu_types)
-
-          churn_prediction = st.session_state.get('tab1_churn_prediction', None)
-          full_menu_data = st.session_state['Menu_Whole']
-          ascending_menu_data = full_menu_data.sort_values(by='QTY', ascending=False)
-          st.subheader("Menu Order Types")
-          st.dataframe(ascending_menu_data)
           
-          if churn_prediction == 0:  # Not churned
-               st.write("##### Since the customers in this cluster are predicted to stay,\n ##### Here are more strategies to continue to entice these customers to buy more!")
-               st.write(f"1. For the bottom 3 popular items, customers' favorite food menus are **{top_menu_types_str}**.")
-               st.write(f"2. For the top 3 popular items, customers' favorite food menus are **{bottom_menu_types_str}**. "
-             "Promotional strategies such as giving discounts and vouchers could incentivize them to buy more of these items.")
-          else:  # Churned
-               st.write("##### Since Customers in this cluster are predicted to churn,\n ##### Here are some strategies to retain them.")
-               st.write(f"1. For the bottom 3 popular items, customers' favorite food menus are **{top_menu_types_str}**.")
-               st.write(f"2. For the top 3 popular items, customers' favorite food menus are **{bottom_menu_types_str}**. "
-             "Promotional strategies such as giving discounts and vouchers could incentivize them to buy more of these items.")
+          if total_revenue == 0:
+               st.write("There are no existing customer records from these clusters")
+          elif total_revenue != 0:
+               card(title=str(total_revenue), text='Total Sales Revenue Generated')
+               # st.metric("Total Sales Revenue",total_revenue)
+     
+               print(get_bar_chart_df(*args), args)
+               st.subheader("Bottom 3 Popular Menu")
+               st.bar_chart(get_bar_chart_df(*args)[0], x='MENU_TYPE', y='QTY')
+               st.subheader("Top 3 Popular Menu")
+               st.bar_chart(get_bar_chart_df(*args)[1], x='MENU_TYPE', y='QTY')
+     
+               bottom_menu, top_menu = get_bar_chart_df(*args)
+               full_menu_data = get_bar_chart_df(*args)[0]
+     
+         # Extract the top and bottom 3 menu types
+               top_menu_types = top_menu['MENU_TYPE'].tolist()
+               bottom_menu_types = bottom_menu['MENU_TYPE'].tolist()
+     
+         # Convert the menu types to formatted strings
+               top_menu_types_str = ", ".join(top_menu_types)
+               bottom_menu_types_str = ", ".join(bottom_menu_types)
+     
+               churn_prediction = st.session_state.get('tab1_churn_prediction', None)
+               full_menu_data = st.session_state['Menu_Whole']
+               ascending_menu_data = full_menu_data.sort_values(by='QTY', ascending=False)
+               st.subheader("Menu Order Types")
+               st.dataframe(ascending_menu_data)
+               
+               if churn_prediction == 0:  # Not churned
+                    st.write("##### Since the customers in this cluster are predicted to stay,\n ##### Here are more strategies to continue to entice these customers to buy more!")
+                    st.write(f"1. The top 3 most unpopular food menu are **{bottom_menu_types_str}**. Although these menu types are doing decent, marketing strategies such as cross-selling could be done to increase sales revenue. Such examples could be bundle deals to help promote more of these Customers to buy the items from these menu.")
+                    st.write(f"2. The top 3 customer favourite food menus are **{top_menu_types_str}**. "
+                  "Promotional strategies such as giving discounts and vouchers for these food menu items could incentivize them to buy more food items, which might increase overall sales!")
+               else:  # Churned
+                    st.write("##### Since Customers in this cluster are predicted to churn,\n ##### Here are some strategies to retain them.")
+                    st.write(f"1. The top 3 most unpopular food menu are **{bottom_menu_types_str}**. There are two measures that can help increase overall sales.\n - These food menu types should be removed and be replaced with new menu types that can do better.\n - Marketing strategies such as cross-selling could be done to increase sales revenue. Such examples could be bundle deals to help promote more of these Customers to buy the items from these menu.")
+                    st.write(f"2. For the top 3 popular items, customers' favorite food menus are **{top_menu_types_str}**. "
+                  "Promotional strategies such as giving discounts and vouchers could incentivize them to buy more of these items.")
 
 
 
