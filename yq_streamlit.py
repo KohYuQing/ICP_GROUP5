@@ -17,7 +17,7 @@ st.set_page_config(page_title='INVEMP Tasty Bytes Group 5', page_icon='🍖🍕�
 st.sidebar.title("INVEMP: Inventory/Warehouse Management & Prediction on Sales per Menu Item")
 st.sidebar.markdown("This web app allows you to explore the internal inventory of Tasty Bytes. You can explore these functions in the web app (Description of Page)")
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(['Churn Prediction', 'Prediction B', 'Bundled Items Sales Analysis', 'Prediction D', 'Prediction E'])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(['Churn Prediction', 'Customer Revenue Calculation', 'Bundled Items Sales Analysis', 'Prediction D', 'Prediction E'])
 
 
 def tab1_predict(city,sales_level,frequency_level,history_level):
@@ -213,7 +213,7 @@ with tab1:
 
 
 with tab2:
-     st.title('Calculation of Revenue ')
+     st.title('💲 Calculation of Revenue 💲')
      st.markdown("This tab predicts whether or not the customers in a selected cluster is likely to churn. It also includes insights on the selected cluster, such as their total revenue by year \
                  as well as the number of orders made by this cluster for each menu type. \nAt the bottom, there is a revenue calculation to estimate the revenue by this cluster \
                  in the following year if they do not churn. This calculation is based on the cluster's revenue generated in the previous years.")
