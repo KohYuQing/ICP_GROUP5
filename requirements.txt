@@ -5,4 +5,4 @@ pandas
 scikit-learn
 pydeck
 xgboost
-streamlit_card
+streamlit_card==0.0.61
