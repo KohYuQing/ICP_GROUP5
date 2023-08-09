@@ -57,7 +57,7 @@ def tab1_predict(city,sales_level,frequency_level,history_level):
      # #x_test[required.index('frequency_cluster')] = frequency_level
      # x_test[required.index('customer_age_cluster')] = 1
 
-     with open('final_model.sav','rb') as f:
+     with open('model_wins_176.sav','rb') as f:
           model = pickle.load(f)
 
      print(x_test)
@@ -70,7 +70,7 @@ def tab1_predict(city,sales_level,frequency_level,history_level):
      st.session_state['tab1_result'] = result
      st.session_state['tab1_churn_prediction'] = y
 
-     df = pd.read_csv('2021.csv')
+     df = pd.read_csv('2021_wins.csv')
 
 def get_bar_chart_df(city, frequency_level, sales_level, history_level):
     df = pd.read_csv('2021.csv')
