@@ -622,22 +622,29 @@ with tab3:
             st.error(f"Failed to retrieve data from {url}. Status code: {response.status_code}")
             return None
 
-    def main():
 
-        # Replace the 'github_url' variable with the actual URL of the zipped CSV file on GitHub
-        github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/y2022_data_withqty.zip"
-        df = read_csv_from_zipped_github(github_url)
 
 
     
     github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/y2022_data_withqty.zip"
     maintable = read_csv_from_zipped_github(github_url)
     github_url_woy2022 = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/woy2022_data.zip"
+    noscale = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/final_data_noscaler.zip"
     woy2022_df = read_csv_from_zipped_github(github_url_woy2022)
+    only2021_df = read_csv_from_zipped_github(github_url_woy2022)
+    noscale = read_csv_from_zipped_github(noscale)
+
 
     with open('xgbr_gs.pkl', 'rb') as file:
         xgbr_gs = joblib.load(file)
 
+    
+
+
+
+    
+
+    
     
 
 
@@ -673,7 +680,7 @@ with tab3:
     menuitem_reverse_mapping = {v: k for k, v in menuitem_mapping.items()}
     menuitem_labels = list(menuitem_mapping.keys())
 
-    month_mapping = {'Janurary': 1, 'Feburary': 2, "March": 3, 'April': 4, 'May': 5, 'June': 6, 'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12}
+    month_mapping = {'January': 1, 'February': 2, "March": 3, 'April': 4, 'May': 5, 'June': 6, 'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12}
     month_reverse_mapping = {v: k for k, v in month_mapping.items()}
     month_labels = list(month_mapping.keys())
     month_values = list(month_mapping.values())
@@ -771,6 +778,8 @@ with tab3:
         qty_df = bundle_df['TOTAL_QTY_SOLD']
         date_df = bundle_df['DATE']
         bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
+        main_drop = maintable.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
+        noscale = noscale.drop(['TOTAL_SALES_PER_ITEM'], axis = 1)
         ## map values to put in dataframe
         bundle_df['SEASON'] = bundle_df['SEASON'].map(season_mapping)
         bundle_df['CITY'] = bundle_df['CITY'].map(city_mapping)
@@ -784,10 +793,13 @@ with tab3:
             input_data = column_names
             input_df = bundle_df
             prediction = xgbr_gs.predict(input_df)
+            prediction1 = xgbr_gs.predict(noscale)
             output_data = pd.DataFrame(input_df, columns = input_df.columns)
+            noscale = pd.DataFrame(noscale, columns = noscale.columns)
             output_data = pd.concat([qty_df, output_data], axis=1)
             output_data = pd.concat([date_df, output_data], axis=1)
             output_data['PREDICTED_PRICE'] = prediction 
+            noscale['PREDICTED_PRICE'] = prediction1 
             output_data['SEASON'] = output_data['SEASON'].replace({v: k for k, v in season_mapping.items()})
             output_data['CITY'] = output_data['CITY'].replace({v: k for k, v in city_mapping.items()})
             output_data['ITEM_CATEGORY'] = output_data['ITEM_CATEGORY'].replace({v: k for k, v in itemcat_mapping.items()})
@@ -834,9 +846,54 @@ with tab3:
             column_sum_2021 = filter2021['TOTAL_SALES_PER_ITEM'].sum()
             column_sum_2022 = final_df['PREDICTED_PRICE'].sum()
 
-
+            percentage = ((column_sum_2022/column_sum_2021) * 100) - 100
+            
+            st.write('Total Sales for 2021:')
             st.success('The total sales for 2021: ${:.2f}.'.format(column_sum_2021))
+            st.write('Predicted Sales for 2022:')
             st.success('The predicted sales with bundle pricing for 2022: ${:.2f}.'.format(column_sum_2022))
+           
+            if percentage > 0:
+                st.write('Percentage Increase:')
+                st.success('Percentage Increase: {:.2f}%.'.format(percentage))
+            else:
+                st.write('Percentage Decrease:')
+                st.error('Percentage Decrease: {:.2f}%.'.format(percentage))
+            
+            
+            predicted_202df = output_data['PREDICTED_PRICE'].sum()
+
+            predicted_2021 = woy2022_df['TOTAL_SALES_PER_ITEM'].sum()
+
+            len2021 = len(only2021_df) -7500
+            hello = len(woy2022_df)
+
+            sorted_df = noscale.sort_values(by='PREDICTED_PRICE', ascending=False)
+            random_rows = noscale.sample(n=len2021)
+            top_n_rows = sorted_df.iloc[:7500]
+
+            concatenated_df = pd.concat([random_rows, top_n_rows])
+            
+
+            
+
+    
+
+            predicted_2022 = concatenated_df['PREDICTED_PRICE'].sum()
+            percentage1 = ((predicted_2022/predicted_2021) * 100) - 100
+
+            st.write('<span style="font-size: 24px; font-weight: bold;">Overall Sales Comparison 💰💵</span>', unsafe_allow_html=True)
+            st.write('Total Predicted Sales for 2022:')
+
+            st.success("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_2022))
+            st.write('Total Sales for 2021:')
+            st.success("Overall Predicted Sales for 2021: ${:.2f}.".format(predicted_2021))
+            if percentage1 > 0:
+                st.write('Percentage Increase:')
+                st.success('Percentage Increase: {:.2f}%.'.format(percentage1))
+            else:
+                st.write('Percentage Decrease:')
+                st.error('Percentage Decrease: {:.2f}%.'.format(percentage1))
 
   #Tab 3 code here
 
