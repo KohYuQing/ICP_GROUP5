@@ -15,8 +15,8 @@ from streamlit_card import card
 
 st.set_page_config(page_title='INVEMP Tasty Bytes Group 5', page_icon='🍖🍕🍜')
 
-st.sidebar.title("INVEMP: Inventory/Warehouse Management & Prediction on Sales per Menu Item")
-st.sidebar.markdown("This web app allows you to explore the internal inventory of Tasty Bytes. You can explore these functions in the web app: Churn Prediction, Customer Revenue Calculation, Bundled Item Sales Analysis, Truck Implementation and Shift Sales Australia")
+st.sidebar.title("INVEMP: Menu Optimization🗒 & Customer Churn 👫")
+st.sidebar.markdown("This web application allows you to optimize your menu and inspect customer behavior to achieve the high level goal of increasing sales 🤑💰")
 
 tab1, tab2, tab3, tab4, tab5 = st.tabs(['Churn Prediction', 'Customer Revenue', 'Bundled Items Analysis', 'Truck Implementation', 'Sales Prediction Australia'])
 
@@ -1301,7 +1301,7 @@ with tab4:
             ["2021", total_sales_of_trucks_2021, average_sales_2021]
         ]
 
-        header = ["Year", "Total Sales", "Average Sales"]
+        header = ["Year", "Total Sales", "Average Sales Per Truck"]
         perc_df = pd.DataFrame(perc_table, columns=header)
         st.table(perc_df)
 
