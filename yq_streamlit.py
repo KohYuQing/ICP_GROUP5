@@ -785,7 +785,7 @@ with tab4:
           TRUCK_ID = user + 101  # Starting truck ID for each user
       
           # Generate 700 rows of data
-          for i in range(600):
+          for i in range(700):
       
               LOCATION_ID = np.random.choice(location)
       
@@ -928,7 +928,7 @@ with tab4:
         
         # Calculate total and average sales
         total_sales_of_trucks = sum(info['Total Sales'] for info in truck_info)
-        average_sales = total_sales_of_trucks / len(trucks_available) + 5
+        average_sales = total_sales_of_trucks / (len(trucks_available) + 5)
         
         # Print total sales for all trucks combined
         st.write(f"Total sales for all {len(trucks_available) + 5} trucks: ${total_sales_of_trucks:.2f}")
