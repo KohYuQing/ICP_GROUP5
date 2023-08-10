@@ -10,6 +10,7 @@ import requests
 import zipfile
 import io
 import random
+from PIL import Image
 from streamlit_card import card
 
 st.set_page_config(page_title='INVEMP Tasty Bytes Group 5', page_icon='🍖🍕🍜')
@@ -17,7 +18,7 @@ st.set_page_config(page_title='INVEMP Tasty Bytes Group 5', page_icon='🍖🍕�
 st.sidebar.title("INVEMP: Inventory/Warehouse Management & Prediction on Sales per Menu Item")
 st.sidebar.markdown("This web app allows you to explore the internal inventory of Tasty Bytes. You can explore these functions in the web app (Description of Page)")
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(['Churn Prediction', 'Customer Revenue Calculation', 'Bundled Items Sales Analysis', 'Prediction D', 'Prediction E'])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(['Churn Prediction', 'Customer Revenue Calculation', 'Bundled Items Sales Analysis', 'Prediction D', 'Shift Sales Australia'])
 
 
 def tab1_predict(city,sales_level,frequency_level,history_level):
