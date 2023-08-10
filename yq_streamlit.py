@@ -97,7 +97,7 @@ def get_total_revenue_of_cluster(city, frequency_level, sales_level, history_lev
 
 with tab1:
 
-     st.title('Churn Prediction And Measures')
+     st.title('💣Churn Prediction & Measures💣')
      st.markdown('________________________________________________')
 
 #      df_cleaned = dataset.loc[:, ['CITY', 'REGION', 'MENU_TYPE',
@@ -170,55 +170,55 @@ with tab1:
                st.write("There are no existing customer records from these clusters")
           elif total_revenue != 0:
                if city=="New York City":
-                    card(title=str(total_revenue), text='Total Sales Revenue Generated')
+                    card(title=str(total_revenue), text='Total Sales Generated')
                     Improve_revenue=(total_revenue-475309.4)
                     if Improve_revenue < 0:
                          improvement=((round(total_revenue/ 475309.4, 2))-1)*100
-                         card_title = 'Revenue % Falling short from treshold'
+                         card_title = 'Sales % Falling short from treshold'
                          st.metric(card_title,Improve_revenue,improvement)
                     else:
                          improvement=((round(total_revenue / 475309.4, 2))-1)*100
-                         card_title = 'Sales Revenue above Threshold %'
+                         card_title = 'Sales above Threshold %'
                          st.metric(card_title,Improve_revenue,improvement)
                elif city=="San Mateo":
-                    card(title=str(total_revenue), text='Total Sales Revenue Generated')
+                    card(title=str(total_revenue), text='Total Sales Generated')
                     Improve_revenue=(total_revenue-317835.7)
                     if Improve_revenue < 0:
                          improvement=((round(total_revenue/ 317835.7, 2))-1)*100
-                         card_title = 'Revenue % Falling short from treshold'
+                         card_title = 'Sales % Falling short from treshold'
                          st.metric(card_title,Improve_revenue,improvement)
                     else:
                          improvement=((round(total_revenue / 317835.7, 2))-1)*100
-                         card_title = 'Sales Revenue above Threshold %'
+                         card_title = 'Sales above Threshold %'
                          st.metric(card_title,Improve_revenue,improvement)
                elif city=="Boston":
-                    card(title=str(total_revenue), text='Total Sales Revenue Generated')
+                    card(title=str(total_revenue), text='Total Sales Generated')
                     Improve_revenue=(total_revenue-403487.5)
                     if Improve_revenue < 0:
                          improvement=((round(total_revenue/ 403487.5, 2))-1)*100
-                         card_title = 'Revenue % Falling short from treshold'
+                         card_title = 'Sales % Falling short from treshold'
                          st.metric(card_title,Improve_revenue,improvement)
                     else:
                          improvement=((round(total_revenue / 403487.5, 2))-1)*100
-                         card_title = 'Total Sales Revenue above Threshold %'
+                         card_title = 'Total Sales above Threshold %'
                          st.metric(card_title,Improve_revenue,improvement)
                     
                elif city=="Seattle":
 
-                    card(title=str(total_revenue), text='Total Sales Revenue Generated')
+                    card(title=str(total_revenue), text='Total Sales Generated')
                     Improve_revenue=(total_revenue-353532.5)
                     if Improve_revenue < 0:
                          improvement=((round(total_revenue/ 353532.5, 2))-1)*100
-                         card_title = 'Revenue % Falling short from treshold'
+                         card_title = 'Sales % Falling short from treshold'
                          st.metric(card_title,Improve_revenue,improvement)
                     else:
                          improvement=((round(total_revenue / 353532.5, 2))-1)*100
-                         card_title = 'Sales Revenue above Threshold %'
+                         card_title = 'Sales above Threshold %'
                          st.metric(card_title,Improve_revenue,improvement)
 
                     
                elif city=="Denver":
-                    card(title=str(total_revenue), text='Total Sales Revenue Generated')
+                    card(title=str(total_revenue), text='Total Sales Generated')
                     Improve_revenue=(total_revenue-525201.6)
                     if Improve_revenue < 0:
                          improvement=((round(total_revenue/ 525201.6, 2))-1)*100
@@ -253,14 +253,68 @@ with tab1:
                     
                if churn_prediction == 0:  # Not churned
                     st.write("##### Since the customers in this cluster are predicted to stay,\n ##### Here are more strategies to continue to entice these customers to buy more!")
-                    st.write(f"1. The top 3 most unpopular food menu are **{bottom_menu_types_str}**. Although these menu types are doing decent, marketing strategies such as cross-selling could be done to increase sales revenue. Such examples could be bundle deals to help promote more of these Customers to buy the items from these menu.")
+                    st.write(f"1. The top 3 most unpopular food menu are **{bottom_menu_types_str}**. Although these menu types are doing decent, marketing strategies such as cross-selling could be done to increase sales. Such examples could be bundle deals to help promote more of these Customers to buy the items from these menu.")
                     st.write(f"2. The top 3 customer favourite food menus are **{top_menu_types_str}**. "
                     "Promotional strategies such as giving discounts and vouchers for these food menu items could incentivize them to buy more food items, which might increase overall sales!")
                else:  # Churned
                     st.write("##### Since Customers in this cluster are predicted to churn,\n ##### Here are some strategies to retain them.")
-                    st.write(f"1. The top 3 most unpopular food menu are **{bottom_menu_types_str}**. There are two measures that can help increase overall sales.\n - These food menu types should be removed and be replaced with new menu types that can do better.\n - Marketing strategies such as cross-selling could be done to increase sales revenue. Such examples could be bundle deals to help promote more of these Customers to buy the items from these menu.")
+                    st.write(f"1. The top 3 most unpopular food menu are **{bottom_menu_types_str}**. There are two measures that can help increase overall sales.\n - These food menu types should be removed and be replaced with new menu types that can do better.\n - Marketing strategies such as cross-selling could be done to increase sales . Such examples could be bundle deals to help promote more of these Customers to buy the items from these menu.")
                     st.write(f"2. For the top 3 popular items, customers' favorite food menus are **{top_menu_types_str}**. "
-                    "Promotional strategies such as giving discounts and vouchers could incentivize them to buy more of these items.")
+                    "Promotional strategies such as giving discounts and vouchers could incentivize them to buy more of these items, increasing overall sales")
+
+          args = [city, 0, 0, 0]
+
+          if frequency_level=="Low-Frequency": args[1] = 0
+          elif frequency_level=="Medium-Frequency": args[1] = 2
+          elif frequency_level=="High-Frequency": args[1] = 1
+
+          if sales_level=="Low-Spending": args[2] = 1
+          elif sales_level=="Average-Spending":  args[2] = 2
+          elif sales_level=="High-Spending":  args[2] = 0
+
+          if history_level=="New Customer":  args[3] = 1
+          elif history_level=="Standard Customer": args[3] = 0
+          elif history_level=="Long-Standing Customer": args[3] = 2
+
+          city, sale_cluster, frequency_cluster, customer_age_cluster = args
+
+          before = pd.read_csv('before.csv')
+          
+          before = before[before['CITY']==city]
+          before = before[before['sale_cluster']==sale_cluster]
+          before = before[before['frequency_cluster']==frequency_cluster]
+          before = before[before['Customer_age_cluster']==customer_age_cluster]
+          
+          before_dataframe = before['ORDER_AMOUNT'].sum()
+          rounded_before_dataframe = round(before_dataframe, 2)
+          st.write('### Before Marketing Sales strats have been implemented')
+          st.write(before.head(10).sort_values(by='ORDER_AMOUNT', ascending=False))
+          st.write(f"The total Sales the year before marketing strategies is $**{rounded_before_dataframe}**")
+     
+          after = pd.read_csv('after.csv')
+          after = after[after['CITY']==city]
+          after = after[after['sale_cluster']==sale_cluster]
+          after = after[after['frequency_cluster']==frequency_cluster]
+          after = after[after['Customer_age_cluster']==customer_age_cluster]
+          
+          after_dataframe = after['ORDER_AMOUNT'].sum()
+          rounded_after_dataframe = round(after_dataframe, 2)
+          
+          st.write('### After Marketing Sales strategies have been implemented')
+          st.write(before.head(10).sort_values(by='ORDER_AMOUNT', ascending=False))
+          st.write(f"The Predicted Total Sales the year after marketing strategies is $**{rounded_after_dataframe}**")
+
+          percentage_increase = ((rounded_after_dataframe - rounded_before_dataframe) / rounded_before_dataframe) * 100
+          rounded_percentage = round(percentage_increase, 2)
+          st.write(f'Overall Y0Y percentage increase = {rounded_percentage}%')
+
+
+          st.write('### In Conclusion')
+          st.write(f'###### Sales Before Marketing strategies have been implemented ${rounded_before_dataframe}')
+          st.write(f'###### Sales After Marketing strategies have been implemented ${rounded_after_dataframe}')
+          st.write(f'###### Overall Y0Y percentage increase = {rounded_percentage}%')
+          if rounded_percentage>=25:
+               st.write("###### Congratulation! Marketing Strategies was a success and High-Level Goals have been achieved!🎯🎉")
 
 
 
