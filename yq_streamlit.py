@@ -460,7 +460,7 @@ with tab2:
      
           # Model and Prediction
      
-     predictbutton = st.button("Predict")
+     predictbutton = st.button("Predict Customer Churn")
      if predictbutton:
           CaliVal = 0
           MasVal = 0
