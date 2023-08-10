@@ -1126,8 +1126,8 @@ with tab5:
     image = Image.open('Sydney_Image.jpg')
     st.image(image, caption='An Iconic View of Australia')
 
-    st.markdown("This tab allows predictions on Shift Sales of a shift based on the City and Shift ID. There are 2 predictions that we can make here: 1 on the current food truck business and 1 after menu optimization has been implemeted. The model used is a XGBoost model trained on the Tasty Bytes dataset.")
-    st.write('Select City and Shift to get the predicted Shift Sales!')
+    st.markdown("This tab allows predictions on Shift Sales of a shift based on the City, Year & Shift ID. There are 2 predictions that we can make here: 1 on the current food truck business and 1 after menu optimization has been implemeted. The model used is a XGBoost model trained on the Tasty Bytes dataset.")
+    st.write('Select City, Year & Shift to get the predicted Shift Sales!')
 
     city_input = st.selectbox('Select a City', maintable['CITY'].unique(), key='city')
     year_input = st.selectbox('Select a Year', maintable['YEAR'].unique(), key='year')
