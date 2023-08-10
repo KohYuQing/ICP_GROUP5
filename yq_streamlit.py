@@ -460,8 +460,8 @@ with tab2:
      
           # Model and Prediction
      
-     button_return_value = st.button("Predict")
-     if button_return_value:
+     predictbutton = st.button("Predict")
+     if predictbutton:
           CaliVal = 0
           MasVal = 0
           NewVal = 0
