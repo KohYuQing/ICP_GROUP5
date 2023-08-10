@@ -852,6 +852,16 @@ with tab4:
       import requests
       import zipfile
       import io
+
+      # Define a CSS style for the colored box
+      colored_box_style = """
+          display: inline-block;
+          padding: 10px;
+          border: 2px solid #0074D9;
+          background-color: #E6F7FF;
+          color: #0074D9;
+          border-radius: 5px;
+      """
       
       def read_csv_from_zipped_github(url):
       # Send a GET request to the GitHub URL
@@ -884,7 +894,7 @@ with tab4:
         xgbr_gs = joblib.load(file)
         
       # Define the app title and favicon
-      st.title('🚚🍝 Seasonal Truck Implementation 🚛🥗') 
+      st.title('🚚🍝 Implementation of Additional Trucks 🚛🥗') 
       st.subheader('Predict')
       st.markdown("This interactive tab serves as a strategic tool for evaluating the potential benefits of introducing additional trucks during specific seasons. It empowers you to make informed predictions regarding total truck sales based on varying fleet sizes. By inputting the desired number of trucks for implementation, you can project the expected total sales. Furthermore, this tool calculates the average sales for each truck, facilitating a meaningful comparison with historical sales data from previous years. This insightful analysis aids in determining the viability and profitability of expanding your fleet during specific seasons, enabling you to make well-informed decisions for your business growth strategy. ")
       
@@ -1014,8 +1024,8 @@ with tab4:
       for user in range(user_truck_input):
           TRUCK_ID = user + 101  # Starting truck ID for each user
       
-          # Generate 700 rows of data
-          for i in range(700):
+          # Generate 1000 rows of data
+          for i in range(1000):
       
               LOCATION_ID = np.random.choice(location)
       
@@ -1158,18 +1168,18 @@ with tab4:
         
         # Calculate total and average sales
         total_sales_of_trucks = sum(info['Total Sales'] for info in truck_info)
-        average_sales = total_sales_of_trucks / (len(trucks_available) + 5)
+        average_sales = total_sales_of_trucks / (len(trucks_available) + 5 )
         
         # Print total sales for all trucks combined
-        st.write(f"Total sales for all {len(trucks_available) + 5} trucks: ${total_sales_of_trucks:.2f}")
+        st.error(f"Total sales for all {len(trucks_available) + 5} trucks: ${total_sales_of_trucks:.2f}")
         
         # Display average sales
-        st.subheader(f"Average sales for each truck: ${average_sales:.2f}")
+        st.success(f"Average sales for each truck: ${average_sales:.2f}")
 
 
         # FOR COMPARISON WITH 2022 DATA
         st.header(f"Comparison with 2022 data")
-        st.write(filter_rows_2022)
+        # st.write(filter_rows_2022)
         
         # PRINTING OF 2022 TRUCK INFO
         # Calculate total and average sales
@@ -1180,10 +1190,10 @@ with tab4:
         st.table(pd.DataFrame(truck_info_2022_display))
         
         # Print total sales for all trucks combined
-        st.write(f"Total sales for all {len(truck_avail_2022)} trucks: ${total_sales_of_trucks_2022:.2f}")
+        st.error(f"Total sales for all {len(truck_avail_2022)} trucks: ${total_sales_of_trucks_2022:.2f}")
         
         # Display average sales
-        st.subheader(f"Average sales for each truck: ${average_sales_2022:.2f}")
+        st.success(f"Average sales for each truck: ${average_sales_2022:.2f}")
 
 
         # FOR COMPARISON WITH 2021 DATA
@@ -1202,7 +1212,7 @@ with tab4:
           
         filter_rows_2021 = pd.DataFrame(filter_rows_2021, columns=df_2021.columns)
         
-        st.write(filter_rows_2021)
+        # st.write(filter_rows_2021)
         total_sales_of_trucks_2021 = 0
         truck_avail_2021 = filter_rows_2021['TRUCK_ID'].unique()
 
@@ -1221,10 +1231,27 @@ with tab4:
         average_sales_2021 = total_sales_of_trucks_2021 / len(truck_avail_2021)
         
         # Print total sales for all trucks combined
-        st.write(f"Total sales for all {len(truck_avail_2021)} trucks: ${total_sales_of_trucks_2021:.2f}")
+        st.error(f"Total sales for all {len(truck_avail_2021)} trucks: ${total_sales_of_trucks_2021:.2f}")
         
         # Display average sales
-        st.subheader(f"Average sales for each truck: ${average_sales_2021:.2f}")
+        st.success(f"Average sales for each truck: ${average_sales_2021:.2f}")
+        
+        # Summary Table
+        st.header(f"Overall Analysis")
+        perc_table = [
+            ["Future", total_sales_of_trucks, average_sales],
+            ["2022", total_sales_of_trucks_2022, average_sales_2022],
+            ["2021", total_sales_of_trucks_2021, average_sales_2021]
+        ]
+
+        header = ["Year", "Total Sales", "Average Sales"]
+        perc_df = pd.DataFrame(perc_table, columns=header)
+        st.table(perc_df)
+
+        perc_sale_increase = ((total_sales_of_trucks / total_sales_of_trucks_2022) * 100 ) - 100
+        perc_text = f"Percentage Increase: {int(perc_sale_increase)}%"
+        colored_box = f'<div style="{colored_box_style}">{perc_text}</div>'
+        st.write(colored_box, unsafe_allow_html=True)
 
         st.header("Breakdown of Cost for Buying a Food Truck 💸🚚")
         truck_cost = 50000
