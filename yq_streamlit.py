@@ -928,7 +928,7 @@ with tab4:
         
         # Calculate total and average sales
         total_sales_of_trucks = sum(info['Total Sales'] for info in truck_info)
-        average_sales = total_sales_of_trucks / len(trucks_available)
+        average_sales = total_sales_of_trucks / len(trucks_available) + 5
         
         # Print total sales for all trucks combined
         st.write(f"Total sales for all {len(trucks_available) + 5} trucks: ${total_sales_of_trucks:.2f}")
