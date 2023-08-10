@@ -1002,19 +1002,20 @@ with tab4:
         equipment_costs = 10000
         liscenses_permit = 28000
         other_costs = 2000
-        output_data['cog'] = output_data['TOTAL_QTY_SOLD'] * output_data['COG_PER_ITEM_USD']
-        cog = output_data['cog'].sum()
-        total_cost = truck_cost + operating_costs + equipment_costs + liscenses_permit + other_costs + cog
+        filter_rows_2022 ['cog'] = filter_rows_2022 ['TOTAL_QTY_SOLD'] * filter_rows_2022 ['COG_PER_ITEM_USD']
+        average_cog = (filter_rows_2022 ['cog'].sum())/5
+        total_cost = truck_cost + operating_costs + equipment_costs + liscenses_permit + other_costs + average_cog
 
         st.write(f"Food Truck Cost: ${truck_cost}")
         st.write(f"Operating Costs: ${operating_costs} per month")
         st.write(f"Equipment Costs: ${equipment_costs}")
         st.write(f"Equipment Costs: ${equipment_costs}")
         st.write(f"Licenses and Permit Costs: ${liscenses_permit}")
-        st.write(f"Costs of Goods: ${cog}")
+        st.write(f"Average Costs of Goods: ${average_cog}")
         st.write(f"Other Costs: ${other_costs}")
     
         st.subheader("Total Cost: ${:.2f}".format(total_cost))
+    
 with tab5:
   #Tab 5 code here
   st.write('hello')
