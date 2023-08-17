@@ -301,7 +301,7 @@ with tab1:
           rounded_after_dataframe = round(after_dataframe, 2)
           
           st.write('### After Marketing Sales strategies have been implemented')
-          st.write(before.head(10).sort_values(by='ORDER_AMOUNT', ascending=False))
+          st.write(after.head(10).sort_values(by='ORDER_AMOUNT', ascending=False))
           st.write(f"The Predicted Total Sales the year after marketing strategies is $**{rounded_after_dataframe}**")
 
           percentage_increase = ((rounded_after_dataframe - rounded_before_dataframe) / rounded_before_dataframe) * 100
